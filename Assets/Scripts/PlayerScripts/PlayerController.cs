@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask GroundLayer;
     public bool isGrounded;
     public float JumpForce;
+    public float JumpForceStand;
+    public float JumpForceSlide;
 
     [Header("Crouch variables")]
     public float StandHeight;
@@ -38,6 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         PlayerCollider = GetComponent<CapsuleCollider>();
+        JumpForce = JumpForceStand;
     }
 
     void Update()
@@ -147,6 +150,7 @@ public class PlayerController : MonoBehaviour
         isSprint = false;
         AdjustHeight(CrouchHeight, toSlideSpeed);
         SlideTimer = MaxSlideTimer;
+        JumpForce = JumpForceSlide;
     }
 
     // Called from fixed update, adds slide force and decremnents timer
@@ -164,6 +168,7 @@ public class PlayerController : MonoBehaviour
     void StopSlide()
     {
         isSlide = false;
+        JumpForce = JumpForceStand;
         // If player is crouching at the end of the slide, keep them crouched
         if(Input.GetButton("Fire1") != true){
             AdjustHeight(StandHeight, toSlideSpeed);

@@ -219,6 +219,7 @@ GameObject:
   - component: {fileID: 5104216525886595792}
   - component: {fileID: 5104216525886595794}
   - component: {fileID: 5104216525886595793}
+  - component: {fileID: 1799426901429333717}
   m_Layer: 5
   m_Name: Card Frame
   m_TagString: Untagged
@@ -284,6 +285,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1799426901429333717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5104216525886595759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 3, y: 3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &5104216526124115909
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,7 +742,7 @@ Transform:
   - {fileID: 6371557894337923587}
   - {fileID: 1843387854734752838}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &392208179193810123
 MonoBehaviour:
@@ -741,10 +757,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 11400000, guid: 49025dbabf481b744b0669ae3aba7ac9, type: 2}
-  NameText: {fileID: 0}
-  CardTypeText: {fileID: 0}
-  DescriptionText: {fileID: 0}
-  CardCost: {fileID: 0}
+  NameText: {fileID: 5104216526124115911}
+  CardTypeText: {fileID: 8453079436305202804}
+  DescriptionText: {fileID: 3708731250315129752}
+  CardCost: {fileID: 7258495140187434022}
 --- !u!1 &9114278356439546709
 GameObject:
   m_ObjectHideFlags: 0
