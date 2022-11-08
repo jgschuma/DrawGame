@@ -262,6 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrawPile: []
+  InitDone: 0
 --- !u!1 &166412630
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,6 +890,7 @@ MonoBehaviour:
   HandList: []
   CardPrefab: {fileID: 8587467682992287919, guid: 3879d37c2db8403459c97bf5f8d52952, type: 3}
   Canvas: {fileID: 166412631}
+  MaxHandSize: 4
   HandPos: {fileID: 1991276634}
   HandStart: {fileID: 476448544}
   HandEnd: {fileID: 865313314}

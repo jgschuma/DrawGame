@@ -6,10 +6,13 @@ using System;
 public class DrawPileManager : MonoBehaviour
 {
     public List<Card> DrawPile;
+    public bool InitDone = false;
     public static event Action<Card> Draw;
+    public static event Action Ready;
 
     public void Start(){
         Deck.InitDraw += InitDraw;
+        HandManager.DrawNewCard += DrawCardFromPile;
     }
 
     public void DrawCardFromPile(){
@@ -36,9 +39,12 @@ public class DrawPileManager : MonoBehaviour
         }
     }
 
-    public void InitDraw(List<Card> Decklist){
+    public void InitDraw(List<Card> Decklist)
+    {
         DrawPile = new List<Card>(Decklist);
         ShuffleDrawPile();
+        Ready?.Invoke();
+        Debug.Log("What the fuck why isn't this working?????");
     }
 
 

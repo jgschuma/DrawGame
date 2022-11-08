@@ -10,6 +10,8 @@ public class HandManager : MonoBehaviour
     public List<GameObject> HandList = new List<GameObject>();
     public GameObject CardPrefab;
     public Transform Canvas;
+
+    public int MaxHandSize;
     // The general area our cards will rest
     public Transform HandPos;
     // The start and end points of our hand area
@@ -25,10 +27,13 @@ public class HandManager : MonoBehaviour
     private float CardGap;
 
     public static event Action<Card> CardWasPlayed;
+    public static event Action DrawNewCard;
 
-    void Start()
+    public void Start()
     {
+        DrawPileManager.Ready += StartingHand;
         DrawPileManager.Draw += DrawCardToHand;
+        
     }
 
     void Update()
@@ -47,6 +52,7 @@ public class HandManager : MonoBehaviour
             CardWasPlayed?.Invoke(HandList[Selection].GetComponent<CardDisplay>().card);
             HandList.RemoveAt(Selection);
             Destroy(CardBeingPlayed);
+            DrawNewCard?.Invoke();
             if (Selection > HandList.Count - 1 && HandList.Count > 0){
                 Selection = HandList.Count - 1;
             }
@@ -68,6 +74,14 @@ public class HandManager : MonoBehaviour
         // Add the card GameObject to the HandList
         HandList.Add(newCard);
         FitCards();
+    }
+
+    public void StartingHand(){
+        Debug.Log("We are in the opening hand forLoop");
+        for(int i = 0; i < MaxHandSize; i++)
+        {
+            DrawNewCard?.Invoke();
+        }
     }
 
     // Adjusts the cards to they space evenly between our start and stop points

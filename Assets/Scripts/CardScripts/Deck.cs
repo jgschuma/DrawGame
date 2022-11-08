@@ -14,7 +14,14 @@ public class Deck : MonoBehaviour
 
     void Start()
     {
-        InitDraw?.Invoke(deck);
+        
+    }
+
+    void Update(){
+        if(Input.GetKeyDown("l"))
+        {
+            InitDraw?.Invoke(deck);
+        }
     }
 
     
