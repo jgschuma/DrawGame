@@ -29,8 +29,8 @@ public class CameraController : MonoBehaviour
     // This method manages the Camera Movement of our FPS Player
     void Look()
     {
-        float mouseX = Input.GetAxis("Mouse X") * Sensitivity; //* Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * Sensitivity; // * Time.deltaTime; 
+        float mouseX = Input.GetAxis("Mouse X")/Screen.width * 100 * Sensitivity; //* Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y")/Screen.height * 100 * Sensitivity; // * Time.deltaTime; 
 
         xRotation -= mouseY;
         // Prevents the player from spinning on the x axis rotation

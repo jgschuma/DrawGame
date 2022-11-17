@@ -9,10 +9,12 @@ public class DrawPileManager : MonoBehaviour
     public bool InitDone = false;
     public static event Action<Card> Draw;
     public static event Action Ready;
+    public static event Action DrawPileEmpty;
 
     public void Start(){
         Deck.InitDraw += InitDraw;
         HandManager.DrawNewCard += DrawCardFromPile;
+        DiscardPileManager.DiscardToDrawPile += ShuffleDiscard;
     }
 
     public void DrawCardFromPile(){
@@ -21,6 +23,9 @@ public class DrawPileManager : MonoBehaviour
             DrawPile.RemoveAt(0);
         }
         // Else Shuffle Discard into DrawPile and attempt to draw again
+        else{
+            DrawPileEmpty?.Invoke();
+        }
     }
 
     // Use the knuth shuffle to randomize the deck list
@@ -44,7 +49,15 @@ public class DrawPileManager : MonoBehaviour
         DrawPile = new List<Card>(Decklist);
         ShuffleDrawPile();
         Ready?.Invoke();
-        Debug.Log("What the fuck why isn't this working?????");
+    }
+
+    public void ShuffleDiscard(List<Card> Discard){
+        foreach(Card card in Discard){
+            DrawPile.Add(card);
+        }
+        Discard.Clear();
+        ShuffleDrawPile();
+        DrawCardFromPile();
     }
 
 

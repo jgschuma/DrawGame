@@ -45,9 +45,9 @@ public class Deck : MonoBehaviour
             deck[r] = temp;
         }
 
-        for(int i = 0; i < deck.Count; i++){
-            Debug.Log(deck[i].Name);
-        }
+        // for(int i = 0; i < deck.Count; i++){
+        //     Debug.Log(deck[i].Name);
+        // }
     }
 
     // These methods are used by the buttons in Card scene to test functionality

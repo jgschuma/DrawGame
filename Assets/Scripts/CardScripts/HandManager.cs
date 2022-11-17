@@ -10,6 +10,7 @@ public class HandManager : MonoBehaviour
     public List<GameObject> HandList = new List<GameObject>();
     public GameObject CardPrefab;
     public Transform Canvas;
+    public PlayerStats PlayerStat;
 
     public int MaxHandSize;
     // The general area our cards will rest
@@ -39,6 +40,7 @@ public class HandManager : MonoBehaviour
     void Update()
     {
         HightlightSelected();
+        FitCards();
         ScaleCards();
         PlayCard();
         
@@ -48,17 +50,24 @@ public class HandManager : MonoBehaviour
     {
         if(Input.GetKeyDown("f") && HandList.Count > 0){
             GameObject CardBeingPlayed = HandList[Selection];
-            HandList[Selection].GetComponent<CardDisplay>().card.OnPlay();
-            CardWasPlayed?.Invoke(HandList[Selection].GetComponent<CardDisplay>().card);
-            HandList.RemoveAt(Selection);
-            Destroy(CardBeingPlayed);
-            DrawNewCard?.Invoke();
-            if (Selection > HandList.Count - 1 && HandList.Count > 0){
-                Selection = HandList.Count - 1;
+            // Check to see if we have enough energy to play the selected card
+            if(CardBeingPlayed.GetComponent<CardDisplay>().card.Cost <= PlayerStat.Energy){
+                HandList[Selection].GetComponent<CardDisplay>().card.OnPlay();
+                PlayerStat.Energy -= CardBeingPlayed.GetComponent<CardDisplay>().card.Cost;
+                CardWasPlayed?.Invoke(HandList[Selection].GetComponent<CardDisplay>().card);
+                HandList.RemoveAt(Selection);
+                Destroy(CardBeingPlayed);
+                DrawNewCard?.Invoke();
+                if (Selection > HandList.Count - 1 && HandList.Count > 0){
+                    Selection = HandList.Count - 1;
+                }
+                //FitCards();
+            }else{
+                Debug.Log("Not enough energy for that card!");
             }
-            FitCards();
-
         }
+
+        // Allow the player to press a button to cycle a card for a single energy
     }
 
     public void DrawCardToHand(Card CardToDraw)
@@ -73,11 +82,10 @@ public class HandManager : MonoBehaviour
         toDisable.enabled = false;
         // Add the card GameObject to the HandList
         HandList.Add(newCard);
-        FitCards();
+        //FitCards();
     }
 
     public void StartingHand(){
-        Debug.Log("We are in the opening hand forLoop");
         for(int i = 0; i < MaxHandSize; i++)
         {
             DrawNewCard?.Invoke();
@@ -95,7 +103,9 @@ public class HandManager : MonoBehaviour
         for (int i = 0; i < HandList.Count; i++){
                 NextPos = LastPos + new Vector3(CardGap, 0, 0) ;
             // Try using lerp here to make it smooth
-            HandList[i].transform.position = NextPos;
+            // HandList[i].transform.position = NextPos;
+            HandList[i].transform.position = Vector3.Lerp(HandList[i].transform.position, NextPos, .05f );
+            
             LastPos = NextPos;
         }
     }

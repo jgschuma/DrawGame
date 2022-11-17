@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec369ceab8fb1f6408939201ce651d53, type: 3}
+  m_Name: SMG
+  m_EditorClassIdentifier: 
+  Name: SMG
+  CardType: Gun - SMG
+  Description: Rapid fire SMG, Hight fire rate, low damage
+  Cost: 2
+  FireRate: 15
+  Damage: 4
+  MaxRange: 50
+  AmmoCount: 30
+  FireType: 2
+  GunPrefab: {fileID: 2756534349964698992, guid: 1a7e6db0c7ecaec43972dab8b882dd11, type: 3}

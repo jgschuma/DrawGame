@@ -12,7 +12,7 @@ public class Card : ScriptableObject
     //public Sprite CardImage;
     public int Cost;
 
-    public void OnPlay(){
+    public virtual void OnPlay(){
         Debug.Log(Name + " was played.");
     }
 }

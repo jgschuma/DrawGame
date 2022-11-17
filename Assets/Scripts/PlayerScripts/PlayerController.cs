@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
     void CheckCrouch()
     {
-        if(Input.GetButton("Fire1") && isSprint == false && isGrounded == true)
+        if(Input.GetKey("left ctrl") && isSprint == false && isGrounded == true)
         {
             isCrouched = true;
             DesiredHeight = CrouchHeight;
